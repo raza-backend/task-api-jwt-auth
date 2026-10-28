@@ -2,7 +2,7 @@
 
 Production-style REST API with access/refresh token authentication, per-user data isolation, input validation and rate limiting.
 
-**Live:** `<LIVE_URL>` · **Health:** `<LIVE_URL>/health`
+**Live:** https://task-api-jwt-auth.vercel.app · **Health:** https://task-api-jwt-auth.vercel.app/health
 
 ## Stack
 Express 5 · TypeScript · Prisma 6 · PostgreSQL (Neon) · Zod · JWT · bcrypt · Helmet · express-rate-limit
@@ -51,7 +51,10 @@ npm run dev
 | PORT | Default 3000 |
 
 ## Postman
-Import `postman/task-api.postman_collection.json`. Login response auto-sets the `accessToken` collection variable.
+Import `postman/task-api.postman_collection.json`. Login response auto-sets the `accessToken` collection variable. Set `baseUrl` to the live URL above, or `http://localhost:3000` locally.
+
+## Deployment
+Deployed on Vercel as a serverless function: `api/index.ts` exports the Express app from `src/app.ts`, and `vercel.json` routes every path to it. `src/index.ts` runs the same app as a long-lived server for local development.
 
 ## Notes
 - First request after idle may take 2–4 s (Neon free tier scales to zero).
